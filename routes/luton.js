@@ -1,14 +1,15 @@
 var express = require("express");
 var request     = require('request-promise');
 var router  = express.Router();
-var apicache    = require('apicache');
-var redis   = require('redis');
+// var apicache    = require('apicache');
+// var redis   = require('redis');
 
-let cacheWithRedis = apicache
-                     .options({ redisClient: redis.createClient() })
-                     .middleware
+// let cacheWithRedis = apicache
+//                      .options({ redisClient: redis.createClient() })
+//                      .middleware
 
-router.get("/luton", cacheWithRedis('1 minutes'), function(req, res) {
+// router.get("/luton", cacheWithRedis('1 minutes'), function(req, res) {
+router.get("/luton", function(req, res) {
 
     var lutonPws1 = "pws:KMIROCKF8";
     var lutonPws2 = "pws:KMIROCKF23";
