@@ -33,7 +33,9 @@
 		&& wahlfield3DayRainfall >= 0
 	) { %>  
    	<div class="result">Frozen</div>
-   	<%= frozen %>
+   	<div class="result-description">
+   		<%= frozen %>
+   	</div>
    	<br>
 	<br>
 	<a class="today-total-button">More Info...</a>
@@ -60,7 +62,9 @@
 		
 	) { %>
    	<div class="result">Freeze/Thaw</div>
-   	<%= freezeThaw %>
+   	<div class="result-description">
+   		<%= freezeThaw %>
+   	</div>	
    	<br>
 	<br>
 	<a class="today-total-button">More Info...</a>
@@ -85,7 +89,10 @@
 		&& (wahlfield24hrRainfall > .25 || wahlfield3DayRainfall > .5)
 	) { %>  
 	<div class="result">Muddy</div>
-	<%= muddy %>
+	<div class="result-description">
+   		<%= muddy %>
+   	</div>
+	
 	<br>
 	<br>
 	<a class="today-total-button">More Info...</a>
@@ -111,7 +118,10 @@
 		&& wahlfield3DayRainfall > .5
 	) { %>
 	<div class="result">Questionable</div>
-	<%= Questionable %>
+	<div class="result-description">
+   		<%= questionable %>
+   	</div>
+	
 	<br>
 	<br>
 	<a class="today-total-button">More Info...</a>
@@ -137,6 +147,9 @@
 		&& wahlfield3DayRainfall < .5
 	) { %>
 	<div class="result">Probably Dry</div>
+	<div class="result-description">
+   		<%=  probablyDry %>
+   	</div>
 	<br>
 	<br>
 	<a class="today-total-button">More Info...</a>
