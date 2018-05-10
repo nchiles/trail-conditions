@@ -1,0 +1,204 @@
+<% include partials/header %>
+
+<!-- <p class="is">Is</p> -->
+
+<div class="select">
+	<div class="select-show-list">
+		<span>
+			<span class="selected">MERRELL</span>
+			<span class="carat"><i class="fa fa-caret-down"></i></span>
+		</span>
+	</div>
+	<ul class="select-list">
+		<li><div class="select-option"><a class="nostyle" href="/wahlfield">wahlfield</a></div></li>
+		<li><div class="select-option"><a class="nostyle" href="/merrell">merrell</a></div></li>
+		<li><div class="select-option"><a class="nostyle" href="/">luton park</a></div></li>
+		<li><div class="select-option"><a class="nostyle" href="/">cannonsburg ski area</a></div></li>
+		<li><div class="select-option"><a class="nostyle" href="/">egypt valley</a></div></li>
+		<li><div class="select-option"><a class="nostyle" href="/">ken-o-sha</a></div></li>
+	</ul>
+</div>
+
+<!-- <p class="open">Rideable?</p> -->
+
+<img class="progress" src="/assets/images/gray-spinner.gif">
+<div class="loading">Gathering weather data<span>.</span><span>.</span><span>.</span></div>
+
+<!-- FROZEN -->
+<% if (
+		(thisMonthNumber < 4 || thisMonthNumber > 10) 
+		&& minTempFinal < 25 
+		&& (maxTempFinal < 25 || maxTempSum < 90)
+		&& wahlfield24hrRainfall >= 0 
+		&& wahlfield3DayRainfall >= 0
+	) { %>  
+   	<div class="result">Frozen</div>
+   	<%= frozen %>
+   	<br>
+	<br>
+	<a class="today-total-button">More Info...</a>
+	<div class="more-info">
+		<div><span class="conditions">Recent Conditions</span></div>
+		<div>24hr Rainfall: <%= parseFloat(wahlfield24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(wahlfield3DayRainfall).toFixed(2) %>"</div>
+		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
+		<br>
+		<div><span class="conditions">Current Conditions</span></div>
+		<div><%= dat.toLocaleString() %></div>
+		<div><%= parseFloat(wahlfieldCurrentTemp).toFixed(0) %>&#8457; <%= wahlfieldCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(wahlfieldCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= wahlfieldCurrentWind %></div>
+	</div>
+
+<!-- FREEZE/THAW -->
+<% } else if (
+		(thisMonthNumber < 5 || thisMonthNumber > 9) 
+		&& minTempFinal < 25 
+		&& (maxTempFinal > 30 || maxTempSum > 90)
+		&& wahlfield24hrRainfall >= 0 
+		&& wahlfield3DayRainfall >= 0
+		
+	) { %>
+   	<div class="result">Freeze/Thaw</div>
+   	<%= freezeThaw %>
+   	<br>
+	<br>
+	<a class="today-total-button">More Info...</a>
+   	<div class="more-info">
+   		<div><span class="conditions">Recent Conditions</span></div>
+   		<div>24hr Rainfall: <%= parseFloat(wahlfield24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(wahlfield3DayRainfall).toFixed(2) %>"</div>
+		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
+		<br>
+		<div><span class="conditions">Current Conditions</span></div>
+		<div><%= dat.toLocaleString() %></div>
+		<div><%= parseFloat(wahlfieldCurrentTemp).toFixed(0) %>&#8457; <%= wahlfieldCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(wahlfieldCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= wahlfieldCurrentWind %></div>
+	</div>
+
+<!-- MUDDY -->
+<% } else if (
+		(thisMonthNumber < 13) 
+		&& minTempFinal > 25 
+		&& (maxTempFinal > 30 || maxTempSum > 90)
+		&& (wahlfield24hrRainfall > .75 || wahlfield3DayRainfall > 1)
+	) { %>  
+	<div class="result">Muddy</div>
+	<%= muddy %>
+	<br>
+	<br>
+	<a class="today-total-button">More Info...</a>
+   	<div class="more-info">
+   		<div><span class="conditions">Recent Conditions</span></div>
+   		<div>24hr Rainfall: <%= parseFloat(wahlfield24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(wahlfield3DayRainfall).toFixed(2) %>"</div>
+		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
+		<br>
+		<div><span class="conditions">Current Conditions</span></div>
+		<div><%= dat.toLocaleString() %></div>
+		<div><%= parseFloat(wahlfieldCurrentTemp).toFixed(0) %>&#8457; <%= wahlfieldCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(wahlfieldCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= wahlfieldCurrentWind %></div>
+	</div>
+
+<!-- QUESTIONABLE -->
+<% } else if (
+		(thisMonthNumber > 3 || thisMonthNumber < 11) 
+		&& minTempFinal > 50 
+		&& (maxTempFinal > 80 || maxTempSum > 90)
+		&& wahlfield24hrRainfall > .5 
+		&& wahlfield3DayRainfall > .75
+	) { %>
+	<div class="result">Questionable</div>
+	<%= Questionable %>
+	<br>
+	<br>
+	<a class="today-total-button">More Info...</a>
+   	<div class="more-info">
+   		<div><span class="conditions">Recent Conditions</span></div>
+   		<div>24hr Rainfall: <%= parseFloat(wahlfield24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(wahlfield3DayRainfall).toFixed(2) %>"</div>
+		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
+		<br>
+		<div><span class="conditions">Current Conditions</span></div>
+		<div><%= dat.toLocaleString() %></div>
+		<div><%= parseFloat(wahlfieldCurrentTemp).toFixed(0) %>&#8457; <%= wahlfieldCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(wahlfieldCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= wahlfieldCurrentWind %></div>
+	</div>
+
+<!-- PROBABLY DRY -->
+<% } else if (
+		(thisMonthNumber > 4 || thisMonthNumber < 10) 
+		&& minTempFinal > 35 
+		&& (maxTempFinal > 35 || maxTempSum > 170)
+		&& wahlfield24hrRainfall < .75 && wahlfield24hrRainfall > .25
+		&& wahlfield3DayRainfall < 1
+	) { %>
+	<div class="result">Probably Dry</div>
+	<br>
+	<br>
+	<a class="today-total-button">More Info...</a>
+   	<div class="more-info">
+   		<div><span class="conditions">Recent Conditions</span></div>
+   		<div>24hr Rainfall: <%= parseFloat(wahlfield24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(wahlfield3DayRainfall).toFixed(2) %>"</div>
+		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
+		<br>
+		<div><span class="conditions">Current Conditions</span></div>
+		<div><%= dat.toLocaleString() %></div>
+		<div><%= parseFloat(wahlfieldCurrentTemp).toFixed(0) %>&#8457; <%= wahlfieldCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(wahlfieldCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= wahlfieldCurrentWind %></div>
+	</div>
+
+<!-- DRY -->
+<% } else if (
+		(thisMonthNumber > 4 || thisMonthNumber < 10) 
+		&& minTempFinal > 40 
+		&& (maxTempFinal > 60 || maxTempSum > 170)
+		&& wahlfield24hrRainfall < .25 
+		&& wahlfield3DayRainfall < .5
+	) { %>
+	<div class="result">Dry</div>
+   	<div class="result-description">
+   		<%= dry %>
+   	</div>	
+	<br>
+	<br>
+	<a class="today-total-button">More Info...</a>
+   	<div class="more-info">
+   		<div><span class="conditions">Recent Conditions</span></div>
+   		<div>24hr Rainfall: <%= parseFloat(wahlfield24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(wahlfield3DayRainfall).toFixed(2) %>"</div>
+		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
+		<br>
+		<div><span class="conditions">Current Conditions</span></div>
+		<div><%= dat.toLocaleString() %></div>
+		<div><%= parseFloat(wahlfieldCurrentTemp).toFixed(0) %>&#8457; <%= wahlfieldCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(wahlfieldCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= wahlfieldCurrentWind %></div>
+	</div>
+
+<% } else { %>
+	<div class="result">Sorry, not enough data found.</div>
+	<a class="today-total-button">More Info...</a>
+	<div class="more-info">
+		<div>Check with <a href="http://wmmba.org/">the WMMBA</a> for more info.</div>
+		<br>
+		<div><span class="conditions">Recent Conditions</span></div>
+   		<div>24hr Rainfall: <%= parseFloat(wahlfield24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(wahlfield3DayRainfall).toFixed(2) %>"</div>
+		<div>3 Day Low: <%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
+		<div>3 Day High: <%= parseFloat(maxTempFinal).toFixed(0) %>&#8457;</div>
+		<br>
+		<div><span class="conditions">Current Conditions</span></div>
+		<div><%= dat.toLocaleString() %></div>
+		<div><%= parseFloat(wahlfieldCurrentTemp).toFixed(0) %>&#8457; <%= wahlfieldCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(wahlfieldCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= wahlfieldCurrentWind %></div>
+	</div>
+<% } %>
+
+<% include partials/footer %>

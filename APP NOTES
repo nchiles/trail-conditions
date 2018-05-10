@@ -1,0 +1,157 @@
+West Michigan MTB Rainfall Guide
+
+Purpose
+Show user if trail is closed due to precipitation in the area.
+
+Use
+- Map with green dots on trailheads
+- If weather station closest to trail received >1” precip in 24 hours, change dot to red. Else keep green.
+- On click/tap - show trail name with 24hr rainfall amount.
+
+Features
+- Map View or List View
+- Search by trail name
+
+Resources 
+- Weather Underground API - bd3c631e1ce25d97
+- Google Maps API - AIzaSyAGMVZUMmBsIXQXnNetgd4dcYfKnSR6kng
+- https://apicommunity.wunderground.com/weatherapi/topics/can-i-get-the-real-time-weather-data-from-a-specific-weather-station
+
+
+* Find out how to store get request data in database without user input
+* Set 20 minute get request interval and send it to database
+* Set front end to grab from database instead of user requesting data from api each time
+
+Rainfall Threshold Variable
+
+Soil Evaporation Rate????
+
+5 calls to PWS (today - 1,2,3,4,5)
+Add each call up and divide by 5
+Get 5 day total rainfall for PWS 
+Do for all 3 PWS’s on trail
+Add 3 totals
+Divide by 3
+Get trail total rainfall in past 5 days (15 calls)
+
+3 calls for 24 hour data
+
+18 calls for each trail
+
+
+Make trail names into links
+each trail is a new url
+Each url has get request to that trails data 
+
+Loading css on trail name click
+Then go to link
+
+OK to ride
+24hr < .75 AND 5day < 2
+
+NOT OK to ride
+24hr > .75 OR 5day > 2
+
+Hide result div when nostyle clicked
+List dropdown stays down in safari - can’t see loader
+
+--------------------------------------------------------------------------
+
+Change "open" to "dry"
+
+Change results
+
+FREEZE/THAW WARNING
+if temperature gets below 32º and above 32º in 24 hours
+and 
+month is not may/june/july/august/september/october
+
+Disregard numbers like 9999 in precip readings
+
+Fix loader
+
+Add precip data
+
+
+CONDITIONS
+
+2.
+NOT May/June/July/August/September 
+& 3 day low is less than 30 
+& 3 day high is less than 30
+& 24hr rain is greater than or equal to 0" 
+& 3day rain is greater than or equal to 0"
+FROZEN
+
+It's winter. The trail is probably frozen. It might be rideable on a fat bike. Check with <a href="http://wmmba.org/">The WMMBA</a>for more info.
+
+1.
+NOT May/June/July/August/September 
+& 3 day low is less than 32
+& 3 day high is greater than 32
+& 24hr rain is greater than or equal to 0" 
+& 3day rain is greater than or equal to 0"
+FREEZE/THAW
+
+Any moisture in the trail is likely freezing and expanding at night, and thawing during the day. If you ride, make sure it is early in the morning while the trail is still frozen. Check with <a href="http://wmmba.org/">The WMMBA</a>for more info.
+
+
+3.
+any month 
+& 3 day low is greater than 30
+& 3 day high is greater than 30
+& 24hr rain is greater than .25" or 3day rain is greater than .5" 
+MUDDY
+
+The trail has had enough recent rain to do damage to the trail if ridden.
+
+
+
+4.
+May/June/July/August/September 
+& 3 day low is greater than 50
+& 3 day high is greater than 80
+& 24hr rain is greater than .25" or 3day rain is greater than .5"
+QUESTIONABLE
+
+The trail has had rain recently, but the temperatures have been warm enough that it might be ok to ride. Check with <a href="http://wmmba.org/">The WMMBA</a>for more info.
+
+
+5.
+May/June/July/August/September 
+& 3 day low is greater than 35
+& 3 day high is greater than 35
+& 24hr rain is less than .25" 
+& 3day rain is less than .5" 
+PROBABLY DRY
+
+With the time of year, and little to no recent rainfall, the trail should be dry enough to ride without damage. Check with <a href="http://wmmba.org/">The WMMBA</a>for more info.
+
+
+6.
+May/June/July/August/September 
+& 3 day low is greater than 50
+& 3 day high is greater than 60
+& 24hr rain is less than .25" 
+& 3day rain is less than .25" 
+DRY
+
+It's warm, and trail has had little to no rain recently. Get out and enjoy it!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,532 @@
+.navbar-default .navbar-brand{
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  color: black;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.navbar {
+  margin-bottom: 15rem;
+}
+
+.is {
+  text-align: center;
+  margin: 80px 0 40px 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.open {
+  text-align: center;
+  margin-top: 40px;
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.nostyle {
+  color: inherit !important;
+  text-decoration: none !important;
+  display:inline-block;
+  padding-right: 100px;
+}
+
+.progress {
+  width: 80px;
+  height: auto;
+  display: none;
+  margin: 0 auto;
+  margin-top: 5rem;
+}
+
+.loading {
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  display: none;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 5rem;
+}
+
+@keyframes blink {
+    /**
+     * At the start of the animation the dot
+     * has an opacity of .2
+     */
+    0% {
+      opacity: .2;
+    }
+    /**
+     * At 20% the dot is fully visible and
+     * then fades out slowly
+     */
+    20% {
+      opacity: 1;
+    }
+    /**
+     * Until it reaches an opacity of .2 and
+     * the animation can start again
+     */
+    100% {
+      opacity: .2;
+    }
+}
+
+.loading span {
+    /**
+     * Use the blink animation, which is defined above
+     */
+    animation-name: blink;
+    /**
+     * The animation should take 1.4 seconds
+     */
+    animation-duration: 1.4s;
+    /**
+     * It will repeat itself forever
+     */
+    animation-iteration-count: infinite;
+    /**
+     * This makes sure that the starting style (opacity: .2)
+     * of the animation is applied before the animation starts.
+     * Otherwise we would see a short flash or would have
+     * to set the default styling of the dots to the same
+     * as the animation. Same applies for the ending styles.
+     */
+    animation-fill-mode: both;
+}
+
+.loading span:nth-child(2) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .2s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .2s;
+}
+
+.loading span:nth-child(3) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .4s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .4s;
+}
+
+.result {
+  font-family: Montserrat, sans-serif;
+  font-size: 36px;
+  color: #f90;
+  letter-spacing: 3px;
+  text-align: center;
+  display: block;
+  margin-top: 5rem;
+}
+
+.result-description {
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 3px;
+  text-align: center;
+  padding-top: 10px;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.today-total-button {
+  font-family: Montserrat, sans-serif;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 3px;
+  text-align: center;
+  padding-top: 10px;
+  max-width: 350px;
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+}
+
+a:hover {
+    color: rgba(255, 255, 255, 0.7);;
+    text-decoration: none;
+}
+
+.more-info {
+  font-family: Montserrat, sans-serif;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 3px;
+  text-align: center;
+  padding-top: 10px;
+  max-width: 350px;
+  margin: 0 auto;
+  display: none;
+}
+
+.history {
+  display: inline-block;
+  text-align: left;
+}
+
+.conditions {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+/*box font style*/
+.select-show-list, .select-option {
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/*dropdown border*/
+.select-show-list, .select-list {
+  border-color: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px; 
+}
+
+
+body {
+  background: black;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll; 
+}
+
+/*removes blue border*/
+.select a, 
+.select .select-option {
+  outline: none !important; 
+}
+
+/*centers dropdown box*/
+.select {
+  margin: 0 auto;
+  position: relative; 
+  height: 40px;
+  max-width: 320px; 
+}
+.select.active .select-show-list {
+  border-color: #fff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; 
+}
+.select.active .select-list {
+  display: block; 
+}
+
+/*flips carront*/
+.select.active .fa {
+  transform-origin: 25%;
+  transform: rotate(180deg); 
+} 
+
+/*box style*/
+.select-show-list {
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
+  text-align: center;
+  transition: border-color .1s ease-out;
+  width: 320px;
+}
+
+/*centers text in box*/
+.select-show-list {
+  display: table-cell;
+}
+.selected {
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 25px;
+}
+
+/*styles carrot*/
+.select-show-list .fa {
+  color: #f90;
+  transition: all .25s ease-out; 
+}
+
+/*.carat {
+  text-align: end !important; 
+}*/
+
+/*styles and formats dropdown list*/
+.select-list {
+  background: #000;
+  border-color: #fff;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 0;
+  display: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0; 
+}
+
+/*delete?*/
+/*@media (max-width: 799px) {*/
+  .select-list {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    right: 0; 
+  }
+
+  /*line under SELECT...*/
+  .select-list:before {
+    background: rgba(255, 255, 255, 0.25);
+    content: '';
+    height: 1px;
+    left: 13px;
+    position: absolute;
+    right: 13px;
+    top: 0; 
+  } 
+/*}*/
+
+/*styles dropdown list*/
+.select-option {
+  background: none;
+  border: 0;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  line-height: 1.5;
+  margin: 0;
+  padding: .5em .5em;
+  text-align: start;
+  text-decoration: none;
+  transition: all .25s ease-out; 
+}
+
+/*hover on list*/
+.select-option:hover, .select-option:focus {
+  color: #fff; 
+}
+
+/*styles dropdown list*/
+/*@media (max-width: 799px) {*/
+  .select-option {
+    display: block;
+    margin: 0;
+    padding: 13px;
+    width: 100%; 
+  } 
+/*}*/
+
+
+
+
+
+
+
+
+/** {
+  box-sizing: border-box; 
+}
+*/
+
+/*delete?*/
+.select-show-list:active {
+  border-color: #fff; 
+}
+
+/*delete?*/
+.select-show-list > span {
+  display: table;
+  width: 100%; 
+}
+
+/*delete?*/
+.select-show-list .selected {
+  display: table-cell;
+  padding-left: 13px;
+  word-wrap: break-all;
+  word-wrap: break-word;
+  hyphens: auto; 
+}
+
+/*hides horizontal list in big view*/
+/*@media (min-width: 800px) {
+  .select-show-list {
+    display: none; 
+  } 
+}*/
+
+/*displays horizontal list in big view*/
+/*@media (min-width: 800px) {
+  .select-list {
+    border: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+  } 
+}*/
+
+/*delete?*/
+.active > .select-option {
+  color: #fff; 
+}
+
+/*.progress {
+  max-width: 350px;
+  height: 1px;
+  bottom: 20vh;
+  background: #000;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progress:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  animation: load 1s linear;
+  
+}
+
+.progress-undo {
+  max-width: 350px;
+  height: 1px;
+  bottom: 20vh;
+  background: rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progress-undo:after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: #000;
+  animation: unload 1s linear;
+  
+}*/
+
+/*@-moz-keyframes load {
+  0% { width: 0; }
+  10% { width: 5%; }
+  20% { width: 15%; }
+  30% { width: 25%; }
+  40% { width: 30%; }
+  50% { width: 44%; }
+  60% { width: 50%; }
+  70% { width: 72%; }
+  80% { width: 84%; }
+  90% { width: 92%; }
+  100% { width: 100%; }
+}
+
+@-webkit-keyframes load {
+  0% { width: 0; }
+  10% { width: 5%; }
+  20% { width: 15%; }
+  30% { width: 25%; }
+  40% { width: 30%; }
+  50% { width: 44%; }
+  60% { width: 50%; }
+  70% { width: 72%; }
+  80% { width: 84%; }
+  90% { width: 92%; }
+  100% { width: 100%; }
+}
+
+@-o-keyframes load {
+  0% { width: 0; }
+  10% { width: 5%; }
+  20% { width: 15%; }
+  30% { width: 25%; }
+  40% { width: 30%; }
+  50% { width: 44%; }
+  60% { width: 50%; }
+  70% { width: 72%; }
+  80% { width: 84%; }
+  90% { width: 92%; }
+  100% { width: 100%; }
+}
+
+@keyframes load {
+  0% { width: 0; }
+  10% { width: 5%; }
+  20% { width: 15%; }
+  30% { width: 25%; }
+  40% { width: 30%; }
+  50% { width: 44%; }
+  60% { width: 50%; }
+  70% { width: 72%; }
+  80% { width: 84%; }
+  90% { width: 92%; }
+  100% { width: 100%; }
+}
+
+@-moz-keyframes unload {
+  0% { width: 0; }
+  10% { width: 5%; }
+  20% { width: 15%; }
+  30% { width: 25%; }
+  40% { width: 30%; }
+  50% { width: 44%; }
+  60% { width: 50%; }
+  70% { width: 72%; }
+  80% { width: 84%; }
+  90% { width: 92%; }
+  100% { width: 100%; }
+}
+
+@-webkit-keyframes unload {
+  0% { width: 0; }
+  10% { width: 5%; }
+  20% { width: 15%; }
+  30% { width: 25%; }
+  40% { width: 30%; }
+  50% { width: 44%; }
+  60% { width: 50%; }
+  70% { width: 72%; }
+  80% { width: 84%; }
+  90% { width: 92%; }
+  100% { width: 100%; }
+}
+
+@-o-keyframes unload {
+  0% { width: 0; }
+  10% { width: 5%; }
+  20% { width: 15%; }
+  30% { width: 25%; }
+  40% { width: 30%; }
+  50% { width: 44%; }
+  60% { width: 50%; }
+  70% { width: 72%; }
+  80% { width: 84%; }
+  90% { width: 92%; }
+  100% { width: 100%; }
+}
+
+@keyframes unload {
+  0% { width: 0; }
+  10% { width: 5%; }
+  20% { width: 15%; }
+  30% { width: 25%; }
+  40% { width: 30%; }
+  50% { width: 44%; }
+  60% { width: 50%; }
+  70% { width: 72%; }
+  80% { width: 84%; }
+  90% { width: 92%; }
+  100% { width: 100%; }
+}*/
+

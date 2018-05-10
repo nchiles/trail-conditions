@@ -1,0 +1,25 @@
+{
+  "name": "wmmtb_rainfall_guide",
+  "version": "1.0.0",
+  "description": "Real time trail precipitation data ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass:compile": "node-sass --include-path sass public/app.scss public/app.css"
+  },
+  "author": "Nate Chiles",
+  "license": "ISC",
+  "dependencies": {
+    "apicache": "^1.2.1",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "npm": "^5.8.0",
+    "redis": "^2.8.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.6.1",
+    "nodemon": "^1.12.1"
+  }
+}

@@ -1,0 +1,201 @@
+@mixin collapsed {
+	@media (max-width: 799px) {
+		@content;
+	}
+}
+
+@mixin uncollapsed {
+	@media (min-width: 800px) {
+		@content;
+	}
+}
+
+$select-size: 50px;
+$select-font-color: rgba(#fff, .5);
+$select-font-hover-color: #fff;
+
+%condensed {
+	font-family: Montserrat, sans-serif;
+	font-size: 12px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+%borders {
+	border-color: rgba(#fff, .25);
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: black;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	margin: 2em 0;
+	padding: 0;
+	overflow-y: scroll;
+}
+
+.select {
+	margin: 0 auto;
+	position: relative;
+	
+	a,
+	button {
+		outline: none !important;
+	}
+	
+	// When select is active (only on small devices)
+	@include collapsed {
+		height: $select-size;
+		max-width: 250px;
+		
+		&.active {
+			// Change border styles on select-show-list
+			.select-show-list {
+				border-color: #fff;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+			// Show the dropdown list 
+			.select-list {
+				display: block;
+			}
+			// Rotate caret icon 
+			.fa {
+				transform-origin: 25%;
+				transform: rotate(180deg);
+			}
+		}
+	}
+}
+
+.select-show-list {
+	@extend %condensed;
+	@extend %borders;
+	background: #000;
+	color: #fff;
+	cursor: pointer;
+	height: $select-size;
+	line-height: $select-size;
+	overflow: hidden;
+	padding-left: 40px;
+	text-align: center;
+	transition: border-color .1s ease-out;
+	width: 100%;
+	
+	&:active {
+		border-color: #fff;
+	}
+	
+	&:hover,
+	&:focus {
+		border-color: rgba(#fff, .5);
+	}
+	
+	> span {
+		display: table;
+		width: 100%;
+	}
+		
+	.selected {
+		display: table-cell;
+		padding-left: ceil($select-size / 4);
+		word-wrap: break-all;
+		word-wrap: break-word;
+		hyphens: auto;
+		
+		& + span {
+			display: table-cell;
+			padding-right: ceil($select-size / 4);
+			text-align: end;
+			width: $select-size;
+		}
+	}
+	
+	.fa {
+		color: #f90;
+		transition: all .25s ease-out;
+	}
+	
+	@include uncollapsed {
+		display: none;
+	}
+}
+
+.select-list {
+	@extend %borders;
+	background: #000;
+	border-color: #fff;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-top: 0;
+	display: none;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	
+	@include collapsed {
+		position: absolute;
+		top: calc(100% - 1px);
+		left: 0;
+		right: 0;
+		
+		// Subtle line
+		&:before {
+			background: rgba(#fff, .25);
+			content: '';
+			height: 1px;
+			left: ceil($select-size / 4);
+			position: absolute;
+			right: ceil($select-size / 4);
+			top: 0;
+		}
+	}
+	
+	@include uncollapsed {
+		border: 0;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+}
+
+.select-option {
+	@extend %condensed;
+	background: none;
+	border: 0;
+	color: $select-font-color;
+	cursor: pointer;
+	line-height: 1.5;
+	margin: 0;
+	padding: .5em .5em;
+	text-align: start;
+	text-decoration: none;
+	transition: all .25s ease-out;
+	
+	.active > & {
+		color: $select-font-hover-color;
+	}
+	
+	&:hover,
+	&:focus {
+		color: $select-font-hover-color;
+	}
+	
+	@include collapsed {
+		display: block;
+		margin: 0;
+		padding: ceil($select-size / 4);
+		width: 100%;
+	}
+	
+	@include uncollapsed {
+		
+	}
+}
