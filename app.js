@@ -1,8 +1,9 @@
 var express 	= require("express");
 var app     	= express();
 var request 	= require('request-promise');
-var redis 		= require('redis');
-var redisClient	= redis.createClient({host: 'localhost', port: 6379});
+// var redis 		= require('redis');
+// var redisClient	= redis.createClient({host: 'localhost', port: 6379});
+var client 		= require('redis').createClient(process.env.REDIS_URL);
 var port   		= Number(process.env.PORT || 3000);
 
 //Routes
@@ -20,13 +21,13 @@ app.use(express.static('public'))
 app.set("view engine", "ejs");
 
 
-redisClient.on('ready',function() {
- console.log("Redis is ready");
-});
+// redisClient.on('ready',function() {
+//  console.log("Redis is ready");
+// });
 
-redisClient.on('error',function() {
- console.log("Error in Redis");
-});
+// redisClient.on('error',function() {
+//  console.log("Error in Redis");
+// });
 
 app.get("/", function(req, res) {
 	res.render("index");
