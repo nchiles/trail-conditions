@@ -1,15 +1,15 @@
 var express     = require("express");
 var request     = require('request-promise');
 var router      = express.Router();
-// var apicache    = require('apicache');
-// var redis       = require('redis');
+var apicache    = require('apicache');
+var redis       = require('redis');
 
-// let cacheWithRedis = apicache
-//                      .options({ redisClient: redis.createClient() })
-//                      .middleware
+let cacheWithRedis = apicache
+                     .options({ redisClient: redis.createClient() })
+                     .middleware
 
-// router.get("/wahlfield", cacheWithRedis('1 minutes'), function(req, res) {
-router.get("/wahlfield", function(req, res) {
+router.get("/wahlfield", cacheWithRedis('1 minutes'), function(req, res) {
+// router.get("/wahlfield", function(req, res) {
 
     var wahlfieldPws1 = "pws:KMICOMST7";
     var wahlfieldPws2 = "pws:KMICOMST9";
