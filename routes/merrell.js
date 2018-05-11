@@ -1,8 +1,8 @@
-var express = require("express");
+var express     = require("express");
 var request     = require('request-promise');
-var router  = express.Router();
+var router      = express.Router();
 var apicache    = require('apicache');
-var redis   = require('redis');
+var redis       = require('redis');
 
 let cacheWithRedis = apicache
                      .options({ redisClient: redis.createClient() })

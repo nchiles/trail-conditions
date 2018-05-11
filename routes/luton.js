@@ -5,11 +5,10 @@ var apicache    = require('apicache');
 var redis       = require('redis');
 
 let cacheWithRedis = apicache
-                     .options({ client: redis.createClient() })
+                     .options({ redisClient: redis.createClient() })
                      .middleware
 
 router.get("/luton", cacheWithRedis('1 minutes'), function(req, res) {
-// router.get("/luton", function(req, res) {
 
     var lutonPws1 = "pws:KMIROCKF8";
     var lutonPws2 = "pws:KMIROCKF23";
