@@ -9,7 +9,6 @@ let cacheWithRedis = apicache
                      .middleware
 
 router.get("/wahlfield", cacheWithRedis('1 minutes'), function(req, res) {
-// router.get("/wahlfield", function(req, res) {
 
     var wahlfieldPws1 = "pws:KMICOMST7";
     var wahlfieldPws2 = "pws:KMICOMST9";
