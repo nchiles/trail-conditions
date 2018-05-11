@@ -2,11 +2,10 @@ var express     = require("express");
 var request     = require('request-promise');
 var router      = express.Router();
 var apicache    = require('apicache');
-var redisclient = require('redis').createClient(process.env.REDIS_URL);
 var redis       = require('redis');
 
 let cacheWithRedis = apicache
-                     .options({ redisClient: redis.createClient() })
+                     .options({ client: redis.createClient() })
                      .middleware
 
 router.get("/luton", cacheWithRedis('1 minutes'), function(req, res) {
