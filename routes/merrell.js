@@ -1,15 +1,14 @@
-var express     = require("express");
+var express = require("express");
 var request     = require('request-promise');
-var router      = express.Router();
+var router  = express.Router();
 var apicache    = require('apicache');
-var redis       = require('redis');
+var redis   = require('redis');
 
 let cacheWithRedis = apicache
-                     .options({ client: redis.createClient() })
+                     .options({ redisClient: redis.createClient() })
                      .middleware
 
 router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
-// router.get("/merrell", function(req, res) {
 
     var merrellPws1 = "pws:KMIROCKF23";
     var merrellPws2 = "pws:KMIROCKF10";
