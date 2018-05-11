@@ -1,5 +1,5 @@
 var express = require("express");
-var request     = require('request-promise');
+var request = require('request-promise');
 
 freezeThaw = "Any moisture in the trail is likely freezing/expanding at night, and thawing during the day. If you ride, make sure it is early in the morning while the trail is still frozen.";
 

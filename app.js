@@ -10,9 +10,9 @@ var wahlfieldRoute 	= require('./routes/wahlfield.js');
 	merrellRoute 	= require('./routes/merrell.js');
 	lutonRoute 		= require('./routes/luton.js');
 
-app.use(wahlfieldRoute);
-app.use(merrellRoute);
-app.use(lutonRoute);
+// app.use(wahlfieldRoute);
+// app.use(merrellRoute);
+// app.use(lutonRoute);
 
 require('./routes/results.js');
 
