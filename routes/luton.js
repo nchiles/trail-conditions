@@ -9,7 +9,7 @@ let cacheWithRedis = apicache
                      .middleware
 
 router.get("/luton", cacheWithRedis('1 minutes'), function(req, res) {
-router.get("/luton", function(req, res) {
+// router.get("/luton", function(req, res) {
 
     var lutonPws1 = "pws:KMIROCKF8";
     var lutonPws2 = "pws:KMIROCKF23";
