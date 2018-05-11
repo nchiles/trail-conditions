@@ -7,15 +7,15 @@ var redis 		= require('redis');
 var port   		= Number(process.env.PORT || 3000);
 
 //Routes
-// var wahlfieldRoute 	= require('./routes/wahlfield.js');
+var wahlfieldRoute 	= require('./routes/wahlfield.js');
 // 	merrellRoute 	= require('./routes/merrell.js');
 // 	lutonRoute 		= require('./routes/luton.js');
 
-// app.use(wahlfieldRoute);
+app.use(wahlfieldRoute);
 // app.use(merrellRoute);
 // app.use(lutonRoute);
 
-// require('./routes/results.js');
+require('./routes/results.js');
 
 app.use(express.static('public'))
 app.set("view engine", "ejs");
