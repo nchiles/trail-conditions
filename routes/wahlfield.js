@@ -4,9 +4,9 @@ var router      = express.Router();
 var apicache    = require('apicache');
 var redis       = require('redis');
 
-// let cacheWithRedis = apicache
-//                      .options({ redisClient: redis.createClient() })
-//                      .middleware
+let cacheWithRedis = apicache
+                     .options({ redisClient: redis.createClient() })
+                     .middleware
 
 router.get("/wahlfield", function(req, res) {
 
