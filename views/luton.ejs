@@ -113,7 +113,7 @@
 <% } else if (
 		(thisMonthNumber > 3 || thisMonthNumber < 11) 
 		&& minTempFinal > 50 
-		&& (maxTempFinal > 80 || maxTempSum > 90)
+		&& (maxTempFinal > 80 || maxTempSum > 200)
 		&& luton24hrRainfall > 1 
 		&& luton3DayRainfall > 1.5
 	) { %>
@@ -143,7 +143,7 @@
 		(thisMonthNumber > 4 || thisMonthNumber < 10) 
 		&& minTempFinal > 35 
 		&& (maxTempFinal > 35 || maxTempSum > 170)
-		&& luton24hrRainfall < 1 && luton24hrRainfall > .1
+		&& luton24hrRainfall < 1 && luton24hrRainfall >= .1
 		&& luton3DayRainfall < 1.5
 	) { %>
 	<div class="result">Probably Dry</div>
@@ -172,7 +172,7 @@
 		&& minTempFinal > 40 
 		&& (maxTempFinal > 60 || maxTempSum > 170)
 		&& luton24hrRainfall < .1
-		&& luton3DayRainfall < .5
+		&& luton3DayRainfall < 1
 	) { %>
 	<div class="result">Dry</div>
    	<div class="result-description">
