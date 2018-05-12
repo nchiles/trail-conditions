@@ -86,7 +86,7 @@
 		(thisMonthNumber < 13) 
 		&& minTempFinal > 25 
 		&& (maxTempFinal > 30 || maxTempSum > 90)
-		&& (luton24hrRainfall > .25 || luton3DayRainfall > .5)
+		&& (luton24hrRainfall > 1 || luton3DayRainfall > 1.5)
 	) { %>  
 	<div class="result">Muddy</div>
 	<div class="result-description">
@@ -114,8 +114,8 @@
 		(thisMonthNumber > 3 || thisMonthNumber < 11) 
 		&& minTempFinal > 50 
 		&& (maxTempFinal > 80 || maxTempSum > 90)
-		&& luton24hrRainfall > .25 
-		&& luton3DayRainfall > .5
+		&& luton24hrRainfall > 1 
+		&& luton3DayRainfall > 1.5
 	) { %>
 	<div class="result">Questionable</div>
 	<div class="result-description">
@@ -143,8 +143,8 @@
 		(thisMonthNumber > 4 || thisMonthNumber < 10) 
 		&& minTempFinal > 35 
 		&& (maxTempFinal > 35 || maxTempSum > 170)
-		&& luton24hrRainfall < .25 && luton24hrRainfall > .1
-		&& luton3DayRainfall < .5
+		&& luton24hrRainfall < 1 && luton24hrRainfall > .1
+		&& luton3DayRainfall < 1.5
 	) { %>
 	<div class="result">Probably Dry</div>
 	<div class="result-description">
@@ -171,8 +171,8 @@
 		(thisMonthNumber > 4 || thisMonthNumber < 10) 
 		&& minTempFinal > 40 
 		&& (maxTempFinal > 60 || maxTempSum > 170)
-		&& luton24hrRainfall < .15 
-		&& luton3DayRainfall < .25
+		&& luton24hrRainfall < .1
+		&& luton3DayRainfall < .5
 	) { %>
 	<div class="result">Dry</div>
    	<div class="result-description">
