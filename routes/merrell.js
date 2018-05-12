@@ -2,20 +2,19 @@ var express     = require("express");
 var request     = require('request-promise');
 var router      = express.Router();
 var apicache    = require('apicache');
-// var redis       = require('redis');
+var redis       = require('redis');
 
+//HEROKU
 let cacheWithRedis = apicache
                      .middleware
 
+//LOCAL
 // let cacheWithRedis = apicache
-//                      .options({ redisClient: redis.createClient() })
-//                      .middleware
+//                     .options({ redisClient: redis.createClient() })
+//                     .middleware
+
 
 router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
-
-    var merrellPws1 = "pws:KMIROCKF23";
-    var merrellPws2 = "pws:KMIROCKF10";
-    var merrellPws3 = "pws:KMICOMST7";
 
     Date.prototype.subtractDays = function(days) {
       var dat = new Date(this.valueOf());
@@ -25,17 +24,17 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
 
     var dat = new Date();
 
-    var datLessOne = dat.subtractDays(1)
-    var datLessTwo = dat.subtractDays(2)
-    var datLessThree = dat.subtractDays(3)
-    var datLessFour = dat.subtractDays(4)
-    var datLessFive = dat.subtractDays(5)
+    var datLessOne      = dat.subtractDays(1)
+    var datLessTwo      = dat.subtractDays(2)
+    var datLessThree    = dat.subtractDays(3)
+    var datLessFour     = dat.subtractDays(4)
+    var datLessFive     = dat.subtractDays(5)
 
-    var todayLessOne = datLessOne.toJSON().slice(0,10).replace(/-/g,'');
-    var todayLessTwo = datLessTwo.toJSON().slice(0,10).replace(/-/g,'');
-    var todayLessThree = datLessThree.toJSON().slice(0,10).replace(/-/g,'');
-    var todayLessFour = datLessFour.toJSON().slice(0,10).replace(/-/g,'');
-    var todayLessFive = datLessFive.toJSON().slice(0,10).replace(/-/g,'');
+    var todayLessOne    = datLessOne.toJSON().slice(0,10).replace(/-/g,'');
+    var todayLessTwo    = datLessTwo.toJSON().slice(0,10).replace(/-/g,'');
+    var todayLessThree  = datLessThree.toJSON().slice(0,10).replace(/-/g,'');
+    var todayLessFour   = datLessFour.toJSON().slice(0,10).replace(/-/g,'');
+    var todayLessFive   = datLessFive.toJSON().slice(0,10).replace(/-/g,'');
 
     console.log(dat, todayLessOne, todayLessTwo, todayLessThree, todayLessFour, todayLessFive);
 
@@ -46,10 +45,17 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
 
     var month = new Date();
     var thisMonthName = monthNames[month.getMonth()];
-    var thisMonthNumber = month.getMonth();
+    var thisMonthNumber = month.getMonth() + 1;
+
+    var merrellPws1 = "pws:KMIROCKF23";
+    var merrellPws2 = "pws:KMIROCKF10";
+    var merrellPws3 = "pws:KMICOMST7";
+    
+    var apiKey1 = process.env.apiKey1;
+    var apiKey2 = process.env.apiKey2;
 
     /////////24 HOUR RAINFALL//////////
-    request("http://api.wunderground.com/api/bd3c631e1ce25d97/conditions/bestfct:1/q/" + merrellPws1 + ".json")    
+    request("http://api.wunderground.com/api/" + apiKey1 + "/conditions/bestfct:1/q/" + merrellPws1 + ".json")    
     .then(function(data) {
             data1a = JSON.parse(data);
             merrell24hrRainfall1a = data1a["current_observation"]["precip_today_in"];
@@ -58,23 +64,47 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
             merrellCurrentWind = data1a["current_observation"]["wind_string"];
             merrellCurrentFeelsLike = data1a["current_observation"]["feelslike_f"];
     
-        return request("http://api.wunderground.com/api/bd3c631e1ce25d97/conditions/bestfct:1/q/" + merrellPws2 + ".json");
+        return request("http://api.wunderground.com/api/" + apiKey1 + "/conditions/bestfct:1/q/" + merrellPws2 + ".json");
     })
     .then(function(data) {
             data2a = JSON.parse(data);
             merrell24hrRainfall2a = data2a["current_observation"]["precip_today_in"];
     
-        return request("http://api.wunderground.com/api/bd3c631e1ce25d97/conditions/bestfct:1/q/" + merrellPws3 + ".json");
+        return request("http://api.wunderground.com/api/" + apiKey1 + "/conditions/bestfct:1/q/" + merrellPws3 + ".json");
     })
     .then(function(data) {
             data3a = JSON.parse(data);
             merrell24hrRainfall3a = data3a["current_observation"]["precip_today_in"];
 
 
+    //////////3 DAY LOW/HIGH TEMPS////////// 
+        return request("http://api.wunderground.com/api/" + apiKey1 + "/history_" + todayLessOne + "/q/MI/Comstock_Park.json");
+    })
+    .then(function(data) {
+        data1e = JSON.parse(data);
+        minTemp1e = data1e.history.dailysummary[0].mintempi;
+        maxTemp1e = data1e.history.dailysummary[0].maxtempi;
+
+        return request("http://api.wunderground.com/api/" + apiKey1 + "/history_" + todayLessTwo + "/q/MI/Comstock_Park.json");
+    })
+    .then(function(data) {
+        data2e = JSON.parse(data);
+        minTemp2e = data2e.history.dailysummary[0].mintempi;
+        maxTemp2e = data2e.history.dailysummary[0].maxtempi;
+
+        return request("http://api.wunderground.com/api/" + apiKey1 + "/history_" + todayLessThree + "/q/MI/Comstock_Park.json");
+    })
+    .then(function(data) {
+        data3e = JSON.parse(data);
+        minTemp3e = data3e.history.dailysummary[0].mintempi;
+        maxTemp3e = data3e.history.dailysummary[0].maxtempi;
+
+
+
     //////////3 DAY RAINFALL////////// 
     //different key on these 9 calls!!!
-    //pws:KMICOMST7
-        return request("http://api.wunderground.com/api/e49c5c12fec31f3e/history_" + todayLessOne + "/q/" + merrellPws1 + ".json");
+    //pws:KMIROCKF23
+        return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessOne + "/q/" + merrellPws1 + ".json");
     })
     .then(function(data) {
         data1b = JSON.parse(data);
@@ -82,7 +112,7 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
         // maxTemp1b = data1b.history.dailysummary[0].maxtempi;
         merrell3DayRainfall1b = data1b.history.dailysummary[0].precipi;
 
-        return request("http://api.wunderground.com/api/e49c5c12fec31f3e/history_" + todayLessTwo + "/q/" + merrellPws1 + ".json");
+        return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessTwo + "/q/" + merrellPws1 + ".json");
     })
     .then(function(data) {
         data2b = JSON.parse(data);
@@ -90,7 +120,7 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
         // maxTemp2b = data2b.history.dailysummary[0].maxtempi;
         merrell3DayRainfall2b = data2b.history.dailysummary[0].precipi;
 
-        return request("http://api.wunderground.com/api/e49c5c12fec31f3e/history_" + todayLessThree + "/q/" + merrellPws1 + ".json");
+        return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessThree + "/q/" + merrellPws1 + ".json");
     })
     .then(function(data) {
         data3b = JSON.parse(data);
@@ -100,8 +130,8 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
 
 
 
-     //pws:KMICOMST9
-        return request("http://api.wunderground.com/api/e49c5c12fec31f3e/history_" + todayLessOne + "/q/" + merrellPws2 + ".json");
+     //pws:KMIROCKF10
+        return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessOne + "/q/" + merrellPws2 + ".json");
     })
     .then(function(data) {
         data1c = JSON.parse(data);
@@ -109,7 +139,7 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
         // maxTemp1c = data1c.history.dailysummary[0].maxtempi;
         merrell3DayRainfall1c = data1c.history.dailysummary[0].precipi;
 
-        return request("http://api.wunderground.com/api/e49c5c12fec31f3e/history_" + todayLessTwo + "/q/" + merrellPws2 + ".json");
+        return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessTwo + "/q/" + merrellPws2 + ".json");
     })
     .then(function(data) {
         data2c = JSON.parse(data);
@@ -117,7 +147,7 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
         // maxTemp2c = data2c.history.dailysummary[0].maxtempi;
         merrell3DayRainfall2c = data2c.history.dailysummary[0].precipi;
 
-        return request("http://api.wunderground.com/api/e49c5c12fec31f3e/history_" + todayLessThree + "/q/" + merrellPws2 + ".json");
+        return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessThree + "/q/" + merrellPws2 + ".json");
     })
     .then(function(data) {
         data3c = JSON.parse(data);
@@ -127,8 +157,8 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
 
 
 
-    //pws:KMISPART13
-        return request("http://api.wunderground.com/api/e49c5c12fec31f3e/history_" + todayLessOne + "/q/" + merrellPws3 + ".json");
+    //pws:KMICOMST7
+        return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessOne + "/q/" + merrellPws3 + ".json");
     })
     .then(function(data) {
         data1d = JSON.parse(data);
@@ -136,7 +166,7 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
         // maxTemp1d = data1d.history.dailysummary[0].maxtempi;
         merrell3DayRainfall1d = data1d.history.dailysummary[0].precipi;
 
-        return request("http://api.wunderground.com/api/e49c5c12fec31f3e/history_" + todayLessTwo + "/q/" + merrellPws3 + ".json");
+        return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessTwo + "/q/" + merrellPws3 + ".json");
     })
     .then(function(data) {
         data2d = JSON.parse(data);
@@ -144,7 +174,7 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
         // maxTemp2d = data2d.history.dailysummary[0].maxtempi;
         merrell3DayRainfall2d = data2d.history.dailysummary[0].precipi;
 
-        return request("http://api.wunderground.com/api/e49c5c12fec31f3e/history_" + todayLessThree + "/q/" + merrellPws3 + ".json");
+        return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessThree + "/q/" + merrellPws3 + ".json");
     })
     .then(function(data) {
         data3d = JSON.parse(data);
@@ -154,36 +184,15 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
 
 
 
-    //////////3 DAY LOW/HIGH TEMPS////////// 
-        return request("http://api.wunderground.com/api/bd3c631e1ce25d97/history_" + todayLessOne + "/q/MI/Comstock_Park.json");
-    })
-    .then(function(data) {
-        data1e = JSON.parse(data);
-        minTemp1e = data1e.history.dailysummary[0].mintempi;
-        maxTemp1e = data1e.history.dailysummary[0].maxtempi;
-
-        return request("http://api.wunderground.com/api/bd3c631e1ce25d97/history_" + todayLessTwo + "/q/MI/Comstock_Park.json");
-    })
-    .then(function(data) {
-        data2e = JSON.parse(data);
-        minTemp2e = data2e.history.dailysummary[0].mintempi;
-        maxTemp2e = data2e.history.dailysummary[0].maxtempi;
-
-        return request("http://api.wunderground.com/api/bd3c631e1ce25d97/history_" + todayLessThree + "/q/MI/Comstock_Park.json");
-    })
-    .then(function(data) {
-        data3e = JSON.parse(data);
-        minTemp3e = data3e.history.dailysummary[0].mintempi;
-        maxTemp3e = data3e.history.dailysummary[0].maxtempi;
-
+    
 
     //GET 24HR RAINFALL AVERAGE FROM 3 WEATHER STATIONS
     merrell24hrRainfall = (parseFloat(merrell24hrRainfall1a) + parseFloat(merrell24hrRainfall2a) + parseFloat(merrell24hrRainfall3a)) /3;
 
     //GET 3 DAY RAINFALL AVERAGES FROM 3 WEATHER STATIONS
-    merrell3DayRainfall1 = (parseFloat(merrell3DayRainfall1b) + parseFloat(merrell3DayRainfall1c) + parseFloat(merrell3DayRainfall1d)) /3; //1 day ago average rainfall from pws:KMICOMST7 pws:KMICOMST9 pws:KMISPART13
-    merrell3DayRainfall2 = (parseFloat(merrell3DayRainfall2b) + parseFloat(merrell3DayRainfall2c) + parseFloat(merrell3DayRainfall2d)) /3; //2 days ago average rainfall from pws:KMICOMST7 pws:KMICOMST9 pws:KMISPART13
-    merrell3DayRainfall3 = (parseFloat(merrell3DayRainfall3b) + parseFloat(merrell3DayRainfall3c) + parseFloat(merrell3DayRainfall3d)) /3; //3 days ago average rainfall from pws:KMICOMST7 pws:KMICOMST9 pws:KMISPART13
+    merrell3DayRainfall1 = (parseFloat(merrell3DayRainfall1b) + parseFloat(merrell3DayRainfall1c) + parseFloat(merrell3DayRainfall1d)) /3; //1 day ago average rainfall from pws:KMIROCKF23 pws:KMIROCKF10 pws:KMICOMST7
+    merrell3DayRainfall2 = (parseFloat(merrell3DayRainfall2b) + parseFloat(merrell3DayRainfall2c) + parseFloat(merrell3DayRainfall2d)) /3; //2 days ago average rainfall from pws:KMIROCKF23 pws:KMIROCKF10 pws:KMICOMST7
+    merrell3DayRainfall3 = (parseFloat(merrell3DayRainfall3b) + parseFloat(merrell3DayRainfall3c) + parseFloat(merrell3DayRainfall3d)) /3; //3 days ago average rainfall from pws:KMIROCKF23 pws:KMIROCKF10 pws:KMICOMST7
 
     //ADD UP 3 DAY TOTAL RAINFALL
     merrell3DayRainfall = parseFloat(merrell3DayRainfall1) + parseFloat(merrell3DayRainfall2) + parseFloat(merrell3DayRainfall3);
@@ -201,12 +210,11 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
 
 
     console.log("KMIROCKF23: " + merrell24hrRainfall1a,                     '\n' +
-                "KMIROCKF23: " + merrellCurrentTemp,                        '\n' +
-                "KMIROCKF23: " + merrellCurrentCond,                        '\n' +
-                "KMIROCKF23: " + merrellCurrentWind,                        '\n' +
-                "KMIROCKF23: " + merrellCurrentFeelsLike,                   '\n' +
-                "KMIROCKF10: " + merrell24hrRainfall2a,                      '\n' +
+                "KMIROCKF10: " + merrell24hrRainfall2a,                     '\n' +
                 "KMICOMST7: " + merrell24hrRainfall3a,                      '\n' +
+                "1 day ago average rainfall: " + merrell3DayRainfall1,      '\n' +
+                "2 day ago average rainfall: " + merrell3DayRainfall2,      '\n' +
+                "3 day ago average rainfall: " + merrell3DayRainfall3,      '\n' +
                 "min temp yesterday: " + minTemp1e,                         '\n' +
                 "max temp yesterday: " + maxTemp1e,                         '\n' +
                 "min temp 2 days ago: " + minTemp2e,                        '\n' +
@@ -217,14 +225,17 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
                 "maxTempArr: " + maxTempArr,                                '\n' +
                 "minTempArr: " + minTempFinal,                              '\n' +
                 "maxTempArr: " + maxTempFinal,                              '\n' + 
-                "maxTempSum: " + maxTempSum,                              	'\n' +
-                "1 day ago average rainfall: " + merrell3DayRainfall1,      '\n' +
-                "2 day ago average rainfall: " + merrell3DayRainfall2,      '\n' +
-                "3 day ago average rainfall: " + merrell3DayRainfall3);
+                "maxTempSum: " + maxTempSum,                                '\n' + 
+                "KMIROCKF23: " + merrellCurrentTemp,                        '\n' +
+                "KMIROCKF23: " + merrellCurrentCond,                        '\n' +
+                "KMIROCKF23: " + merrellCurrentWind,                        '\n' +
+                "KMIROCKF23: " + merrellCurrentFeelsLike,                   '\n' +
+                "this month: " + thisMonthNumber);
 
 
-	res.render("merrell", { merrell24hrRainfall, merrell3DayRainfall, merrell3DayRainfall1, merrell3DayRainfall2, merrell3DayRainfall3, thisMonthName, thisMonthNumber, minTempArr, maxTempArr, minTempFinal, maxTempFinal, merrellCurrentTemp, merrellCurrentCond, merrellCurrentWind, merrellCurrentFeelsLike, dat, maxTempSum } );
-	})
+    res.render("merrell", { merrell24hrRainfall, merrell3DayRainfall, merrell3DayRainfall1, merrell3DayRainfall2, merrell3DayRainfall3, thisMonthName, thisMonthNumber, minTempArr, maxTempArr, minTempFinal, maxTempFinal, merrellCurrentTemp, merrellCurrentCond, merrellCurrentWind, merrellCurrentFeelsLike, dat, maxTempSum } );
+    })
 });
 
 module.exports = router;
+
