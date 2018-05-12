@@ -5,7 +5,7 @@ var apicache    = require('apicache');
 var redis       = require('redis');
 
 let cacheWithRedis = apicache
-                     .options(redis.createClient())
+                     .options(client.createClient())
                      .middleware
 
 router.get("/wahlfield", cacheWithRedis('1 minutes'), function(req, res) {
