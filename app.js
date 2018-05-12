@@ -1,8 +1,10 @@
 var express 	= require("express");
 var app     	= express();
 var request 	= require('request-promise');
-// var redis 		= require('redis');
+var redis 		= require('redis');
+//LOCAL
 // var redisClient	= redis.createClient({host: 'localhost', port: 6379});
+//HEROKU
 var client = require('redis').createClient(process.env.REDIS_URL);
 var port   		= Number(process.env.PORT || 3000);
 
