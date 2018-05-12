@@ -1,17 +1,18 @@
 var express 	= require("express");
 var app     	= express();
 var request 	= require('request-promise');
-var redis 		= require('redis');
+// var redis 		= require('redis');
 // var redisClient	= redis.createClient({host: 'localhost', port: 6379});
-var redisClient		= redis.createClient(process.env.REDIS_URL);
+var client = require('redis').createClient(process.env.REDIS_URL);
+// var redisClient		= redis.createClient(process.env.REDIS_URL);
 var port   		= Number(process.env.PORT || 3000);
 
 //Routes
-var wahlfieldRoute 	= require('./routes/wahlfield.js');
+// var wahlfieldRoute 	= require('./routes/wahlfield.js');
 // 	merrellRoute 	= require('./routes/merrell.js');
 // 	lutonRoute 		= require('./routes/luton.js');
 
-app.use(wahlfieldRoute);
+// app.use(wahlfieldRoute);
 // app.use(merrellRoute);
 // app.use(lutonRoute);
 
