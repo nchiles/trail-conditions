@@ -4,6 +4,11 @@ var router      = express.Router();
 var apicache    = require('apicache');
 var redis       = require('redis');
 
+// var http = require("http");
+// setInterval(function() {
+//     http.get("http://trail-conditions.herokuapp.com/wahlfield");
+// }, 300000); // every 5 minutes (300000)
+
 //HEROKU
 let cacheWithRedis = apicache
                      .middleware
@@ -14,7 +19,7 @@ let cacheWithRedis = apicache
 //                     .middleware
 
 
-router.get("/wahlfield", cacheWithRedis('1 minutes'), function(req, res) {
+router.get("/wahlfield", cacheWithRedis('5 minutes'), function(req, res) {
 
     Date.prototype.subtractDays = function(days) {
       var dat = new Date(this.valueOf());

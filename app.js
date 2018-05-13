@@ -8,6 +8,16 @@ var redis 		= require('redis');
 var client = require('redis').createClient(process.env.REDIS_URL);
 var port   		= Number(process.env.PORT || 3000);
 
+var http = require("http");
+setInterval(function() {
+    http.get("http://trail-conditions.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
+
+var http = require("http");
+setInterval(function() {
+    http.get("http://trail-conditions.herokuapp.com/wahlfield");
+}, 60001); // every 1 minutes
+
 //Routes
 var wahlfieldRoute 	= require('./routes/wahlfield.js');
 	merrellRoute 	= require('./routes/merrell.js');
