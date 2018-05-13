@@ -25,7 +25,8 @@ var http = require("http");
 setInterval( function(){ 
     var hour = new Date().getHours();
     var minute = new Date().getMinutes();
-    if ((hour >= 7 && hour < 19) && minute == 10) {
+    if ((hour >= 7 && hour < 19) && minute == 25) {
+    	console.log("25 minutes");
         http.get("http://trail-conditions.herokuapp.com/merrell"); 
     }
 } , 3600000);
@@ -34,7 +35,8 @@ var http = require("http");
 setInterval( function(){ 
     var hour = new Date().getHours();
     var minute = new Date().getMinutes();
-    if ((hour >= 7 && hour < 19) && minute == 20) {
+    if ((hour >= 7 && hour < 19) && minute == 30) {
+    	console.log("30 minutes");
         http.get("http://trail-conditions.herokuapp.com/luton"); 
     }
 } , 3600000);
