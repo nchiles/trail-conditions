@@ -14,7 +14,7 @@ let cacheWithRedis = apicache
 //                     .middleware
 
 
-router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
+router.get("/merrell", cacheWithRedis('60 minutes'), function(req, res) {
 
     Date.prototype.subtractDays = function(days) {
       var dat = new Date(this.valueOf());
@@ -50,7 +50,7 @@ router.get("/merrell", cacheWithRedis('1 minutes'), function(req, res) {
     var merrellPws1 = "pws:KMIROCKF23";
     var merrellPws2 = "pws:KMIROCKF10";
     var merrellPws3 = "pws:KMICOMST7";
-    
+
     var apiKey1 = process.env.apiKey1;
     var apiKey2 = process.env.apiKey2;
 
