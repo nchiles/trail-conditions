@@ -14,7 +14,7 @@ let cacheWithRedis = apicache
 //                     .middleware
 
 
-router.get("/merrell", cacheWithRedis('60 minutes'), function(req, res) {
+router.get("/merrell", cacheWithRedis('58 minutes'), function(req, res) {
 
     Date.prototype.subtractDays = function(days) {
       var dat = new Date(this.valueOf());

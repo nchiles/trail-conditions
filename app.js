@@ -10,6 +10,7 @@ var port   		= Number(process.env.PORT || 3000);
 
 var http = require("http");
 setInterval(function() {
+	console.log("index 5 minute get sent");
     http.get("http://trail-conditions.herokuapp.com");
 }, 300000); // every 5 minutes (300000)
 
@@ -17,7 +18,7 @@ var http = require("http");
 setInterval( function(){ 
     var hour = new Date().getHours();
     if (hour >= 7 && hour < 19) {
-    	console.log("wahlfield hour get");
+    	console.log("wahlfield hour get sent");
         http.get("http://trail-conditions.herokuapp.com/wahlfield"); 
     }
 } , 3600000);
@@ -25,22 +26,23 @@ setInterval( function(){
 var http = require("http");
 setInterval( function(){ 
     var hour = new Date().getHours();
-    var minute = new Date().getMinutes();
-    if ((hour >= 7 && hour < 19) && minute == 20) {
-    	console.log("merrell hour and 20 minute get");
+    if (hour >= 7 && hour < 19) {
+    	console.log("merrell hour get sent");
         http.get("http://trail-conditions.herokuapp.com/merrell"); 
     }
-} , 3600000);
+} , 3720000);
 
 var http = require("http");
 setInterval( function(){ 
     var hour = new Date().getHours();
-    var minute = new Date().getMinutes();
-    if ((hour >= 7 && hour < 19) && minute == 22) {
-    	console.log("luton minute and 22 minute get");
+    if (hour >= 7 && hour < 19) {
+    	console.log("luton hour get sent");
         http.get("http://trail-conditions.herokuapp.com/luton"); 
     }
-} , 3600000);
+} , 3840000);
+
+
+
 
 //Routes
 var wahlfieldRoute 	= require('./routes/wahlfield.js');
