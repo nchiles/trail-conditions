@@ -12,7 +12,7 @@ var http = require("http");
 setInterval(function() {
 	console.log("index 5 minute get sent");
     http.get("http://trail-conditions.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
+}, 300000); // every 5 minutes
 
 var http = require("http");
 setInterval( function(){ 
@@ -21,7 +21,7 @@ setInterval( function(){
     	console.log("wahlfield hour get sent");
         http.get("http://trail-conditions.herokuapp.com/wahlfield"); 
     }
-} , 3660000);
+} , 3660000); // every 60 minutes
 
 var http = require("http");
 setInterval( function(){ 
@@ -30,7 +30,7 @@ setInterval( function(){
     	console.log("merrell hour get sent");
         http.get("http://trail-conditions.herokuapp.com/merrell"); 
     }
-} , 3720000);
+} , 3720000); // every 61 minutes
 
 var http = require("http");
 setInterval( function(){ 
@@ -39,10 +39,7 @@ setInterval( function(){
     	console.log("luton hour get sent");
         http.get("http://trail-conditions.herokuapp.com/luton"); 
     }
-} , 3780000);
-
-
-
+} , 3780000); // every 62 minutes
 
 //Routes
 var wahlfieldRoute 	= require('./routes/wahlfield.js');
