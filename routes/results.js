@@ -11,7 +11,7 @@ questionable = "The trail has had rain recently, but the temperatures have been 
 
 probablyDry = "Given the time of year, warmer temps, and little to no recent rainfall, the trail should be dry enough to ride without damage.";
 
-dry = "It's warm, and trail has had little to recent rainfall. Get out and enjoy it!";
+dry = "It's warm and the trail has had little to recent rainfall. Get out and enjoy it!";
 
 error = "error";
 
