@@ -51,8 +51,8 @@ router.get("/wahlfield", cacheWithRedis('60 minutes'), function(req, res) {
     var wahlfieldPws2 = "pws:KMICOMST9";
     var wahlfieldPws3 = "pws:KMISPART13";
 
-    // var apiKey1 = process.env.apiKey1;
-    // var apiKey2 = process.env.apiKey2;
+    var apiKey1 = process.env.apiKey1;
+    var apiKey2 = process.env.apiKey2;
 
     /////////24 HOUR RAINFALL//////////
     request("http://api.wunderground.com/api/" + apiKey1 + "/conditions/bestfct:1/q/" + wahlfieldPws1 + ".json")    
