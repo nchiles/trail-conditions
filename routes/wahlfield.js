@@ -6,7 +6,7 @@ var redis       = require('redis');
 
 //HEROKU
 let cacheWithRedis = apicache
-                     .middleware
+                    .middleware
 
 //LOCAL
 // let cacheWithRedis = apicache
@@ -51,18 +51,18 @@ router.get("/wahlfield", cacheWithRedis('60 minutes'), function(req, res) {
     var wahlfieldPws2 = "pws:KMICOMST9";
     var wahlfieldPws3 = "pws:KMISPART13";
 
-    var apiKey1 = process.env.apiKey1;
-    var apiKey2 = process.env.apiKey2;
+    // var apiKey1 = process.env.apiKey1;
+    // var apiKey2 = process.env.apiKey2;
 
     /////////24 HOUR RAINFALL//////////
     request("http://api.wunderground.com/api/" + apiKey1 + "/conditions/bestfct:1/q/" + wahlfieldPws1 + ".json")    
     .then(function(data) {
             data1a = JSON.parse(data);
-            wahlfield24hrRainfall1a = data1a["current_observation"]["precip_today_in"];
-            wahlfieldCurrentTemp = data1a["current_observation"]["temp_f"];
-            wahlfieldCurrentCond = data1a["current_observation"]["weather"];
-            wahlfieldCurrentWind = data1a["current_observation"]["wind_string"];
-            wahlfieldCurrentFeelsLike = data1a["current_observation"]["feelslike_f"];
+            wahlfield24hrRainfall1a     = data1a["current_observation"]["precip_today_in"];
+            wahlfieldCurrentTemp        = data1a["current_observation"]["temp_f"];
+            wahlfieldCurrentCond        = data1a["current_observation"]["weather"];
+            wahlfieldCurrentWind        = data1a["current_observation"]["wind_string"];
+            wahlfieldCurrentFeelsLike   = data1a["current_observation"]["feelslike_f"];
     
         return request("http://api.wunderground.com/api/" + apiKey1 + "/conditions/bestfct:1/q/" + wahlfieldPws2 + ".json");
     })

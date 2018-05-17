@@ -29,8 +29,6 @@
 		(thisMonthNumber <= 4 || thisMonthNumber >= 11) 
 		&& minTempFinal <= 25 
 		&& (maxTempFinal <= 25 || maxTempSum <= 77)
-		<!-- && merrell24hrRainfall >= 0 
-		&& merrell3DayRainfall >= 0 -->
 	) { %>  
    	<div class="result">Frozen</div>
    	<div class="result-description">
@@ -57,9 +55,6 @@
 		(thisMonthNumber <= 4 || thisMonthNumber >= 10) 
 		&& minTempFinal <= 25 
 		&& (maxTempFinal >= 26 || maxTempSum >= 78)
-		<!-- && merrell24hrRainfall >= 0 
-		&& merrell3DayRainfall >= 0 -->
-		
 	) { %>
    	<div class="result">Freeze/Thaw</div>
    	<div class="result-description">
@@ -83,8 +78,6 @@
 
 <!-- MUDDY -->
 <% } else if (
-		<!-- (thisMonthNumber < 12) 
-		&&  -->
 		minTempFinal >= 26 
 		&& (maxTempFinal >= 30 || maxTempSum >= 78)
 		&& (merrell24hrRainfall >= .75 || merrell3DayRainfall >= 1.5)
@@ -112,8 +105,6 @@
 
 <!-- QUESTIONABLE -->
 <% } else if (
-		<!-- (thisMonthNumber > 3 || thisMonthNumber < 11) 
-		&&  -->
 		minTempFinal >= 26 
 		&& (maxTempFinal >= 80 || maxTempSum >= 225)
 		&& (merrell24hrRainfall >= .75 || merrell3DayRainfall >= 1.5)

@@ -29,8 +29,6 @@
 		(thisMonthNumber <= 4 || thisMonthNumber >= 11) 
 		&& minTempFinal <= 25 
 		&& (maxTempFinal <= 25 || maxTempSum <= 77)
-		<!-- && merrell24hrRainfall >= 0 
-		&& merrell3DayRainfall >= 0 -->
 	) { %>  
    	<div class="result">Frozen</div>
    	<div class="result-description">
@@ -41,15 +39,15 @@
 	<a class="today-total-button">More Info...</a>
 	<div class="more-info">
 		<div><span class="conditions">Recent Conditions</span></div>
-		<div>24hr Rainfall: <%= parseFloat(merrell24hrRainfall).toFixed(2) %>"</div>	
-		<div>3 Day Rainfall: <%= parseFloat(merrell3DayRainfall).toFixed(2) %>"</div>
+		<div>24hr Rainfall: <%= parseFloat(luton24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(luton3DayRainfall).toFixed(2) %>"</div>
 		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
 		<br>
 		<div><span class="conditions">Current Conditions</span></div>
 		<div><%= dat.toLocaleString() %></div>
-		<div><%= parseFloat(merrellCurrentTemp).toFixed(0) %>&#8457; <%= merrellCurrentCond %></div>
-		<div>Feels Like: <%= parseFloat(merrellCurrentFeelsLike).toFixed(0) %>&#8457;</div>
-		<div>Wind: <%= merrellCurrentWind %></div>
+		<div><%= parseFloat(lutonCurrentTemp).toFixed(0) %>&#8457; <%= lutonCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(lutonCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= lutonCurrentWind %></div>
 	</div>
 
 <!-- FREEZE/THAW -->
@@ -57,9 +55,6 @@
 		(thisMonthNumber <= 4 || thisMonthNumber >= 10) 
 		&& minTempFinal <= 25 
 		&& (maxTempFinal >= 26 || maxTempSum >= 78)
-		<!-- && merrell24hrRainfall >= 0 
-		&& merrell3DayRainfall >= 0 -->
-		
 	) { %>
    	<div class="result">Freeze/Thaw</div>
    	<div class="result-description">
@@ -70,24 +65,22 @@
 	<a class="today-total-button">More Info...</a>
    	<div class="more-info">
    		<div><span class="conditions">Recent Conditions</span></div>
-   		<div>24hr Rainfall: <%= parseFloat(merrell24hrRainfall).toFixed(2) %>"</div>	
-		<div>3 Day Rainfall: <%= parseFloat(merrell3DayRainfall).toFixed(2) %>"</div>
+   		<div>24hr Rainfall: <%= parseFloat(luton24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(luton3DayRainfall).toFixed(2) %>"</div>
 		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
 		<br>
 		<div><span class="conditions">Current Conditions</span></div>
 		<div><%= dat.toLocaleString() %></div>
-		<div><%= parseFloat(merrellCurrentTemp).toFixed(0) %>&#8457; <%= merrellCurrentCond %></div>
-		<div>Feels Like: <%= parseFloat(merrellCurrentFeelsLike).toFixed(0) %>&#8457;</div>
-		<div>Wind: <%= merrellCurrentWind %></div>
+		<div><%= parseFloat(lutonCurrentTemp).toFixed(0) %>&#8457; <%= lutonCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(lutonCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= lutonCurrentWind %></div>
 	</div>
 
 <!-- MUDDY -->
 <% } else if (
-		<!-- (thisMonthNumber < 12) 
-		&&  -->
 		minTempFinal >= 26 
 		&& (maxTempFinal >= 30 || maxTempSum >= 78)
-		&& (merrell24hrRainfall >= .5 || merrell3DayRainfall >= 1)
+		&& (luton24hrRainfall >= .5 || luton3DayRainfall >= 1)
 	) { %>  
 	<div class="result">Muddy</div>
 	<div class="result-description">
@@ -99,24 +92,22 @@
 	<a class="today-total-button">More Info...</a>
    	<div class="more-info">
    		<div><span class="conditions">Recent Conditions</span></div>
-   		<div>24hr Rainfall: <%= parseFloat(merrell24hrRainfall).toFixed(2) %>"</div>	
-		<div>3 Day Rainfall: <%= parseFloat(merrell3DayRainfall).toFixed(2) %>"</div>
+   		<div>24hr Rainfall: <%= parseFloat(luton24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(luton3DayRainfall).toFixed(2) %>"</div>
 		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
 		<br>
 		<div><span class="conditions">Current Conditions</span></div>
 		<div><%= dat.toLocaleString() %></div>
-		<div><%= parseFloat(merrellCurrentTemp).toFixed(0) %>&#8457; <%= merrellCurrentCond %></div>
-		<div>Feels Like: <%= parseFloat(merrellCurrentFeelsLike).toFixed(0) %>&#8457;</div>
-		<div>Wind: <%= merrellCurrentWind %></div>
+		<div><%= parseFloat(lutonCurrentTemp).toFixed(0) %>&#8457; <%= lutonCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(lutonCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= lutonCurrentWind %></div>
 	</div>
 
 <!-- QUESTIONABLE -->
 <% } else if (
-		<!-- (thisMonthNumber > 3 || thisMonthNumber < 11) 
-		&&  -->
 		minTempFinal >= 26 
 		&& (maxTempFinal >= 80 || maxTempSum >= 225)
-		&& (merrell24hrRainfall >= .5 || merrell3DayRainfall >= 1)
+		&& (luton24hrRainfall >= .5 || luton3DayRainfall >= 1)
 	) { %>
 	<div class="result">Questionable</div>
 	<div class="result-description">
@@ -128,15 +119,15 @@
 	<a class="today-total-button">More Info...</a>
    	<div class="more-info">
    		<div><span class="conditions">Recent Conditions</span></div>
-   		<div>24hr Rainfall: <%= parseFloat(merrell24hrRainfall).toFixed(2) %>"</div>	
-		<div>3 Day Rainfall: <%= parseFloat(merrell3DayRainfall).toFixed(2) %>"</div>
+   		<div>24hr Rainfall: <%= parseFloat(luton24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(luton3DayRainfall).toFixed(2) %>"</div>
 		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
 		<br>
 		<div><span class="conditions">Current Conditions</span></div>
 		<div><%= dat.toLocaleString() %></div>
-		<div><%= parseFloat(merrellCurrentTemp).toFixed(0) %>&#8457; <%= merrellCurrentCond %></div>
-		<div>Feels Like: <%= parseFloat(merrellCurrentFeelsLike).toFixed(0) %>&#8457;</div>
-		<div>Wind: <%= merrellCurrentWind %></div>
+		<div><%= parseFloat(lutonCurrentTemp).toFixed(0) %>&#8457; <%= lutonCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(lutonCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= lutonCurrentWind %></div>
 	</div>
 
 <!-- DRY -->
@@ -144,8 +135,8 @@
 		(thisMonthNumber >= 5 || thisMonthNumber <= 9) 
 		&& minTempFinal >= 26 
 		&& (maxTempFinal >= 26 || maxTempSum >= 150)
-		&& merrell24hrRainfall <= .49 
-		&& merrell3DayRainfall <= .99
+		&& luton24hrRainfall <= .49 
+		&& luton3DayRainfall <= .99
 	) { %>
 	<div class="result">Dry</div>
    	<div class="result-description">
@@ -156,15 +147,15 @@
 	<a class="today-total-button">More Info...</a>
    	<div class="more-info">
    		<div><span class="conditions">Recent Conditions</span></div>
-   		<div>24hr Rainfall: <%= parseFloat(merrell24hrRainfall).toFixed(2) %>"</div>	
-		<div>3 Day Rainfall: <%= parseFloat(merrell3DayRainfall).toFixed(2) %>"</div>
+   		<div>24hr Rainfall: <%= parseFloat(luton24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(luton3DayRainfall).toFixed(2) %>"</div>
 		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
 		<br>
 		<div><span class="conditions">Current Conditions</span></div>
 		<div><%= dat.toLocaleString() %></div>
-		<div><%= parseFloat(merrellCurrentTemp).toFixed(0) %>&#8457; <%= merrellCurrentCond %></div>
-		<div>Feels Like: <%= parseFloat(merrellCurrentFeelsLike).toFixed(0) %>&#8457;</div>
-		<div>Wind: <%= merrellCurrentWind %></div>
+		<div><%= parseFloat(lutonCurrentTemp).toFixed(0) %>&#8457; <%= lutonCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(lutonCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= lutonCurrentWind %></div>
 	</div>
 
 <% } else { %>
@@ -174,16 +165,16 @@
 		<div>Check with <a href="http://wmmba.org/">the WMMBA</a> for more info.</div>
 		<br>
 		<div><span class="conditions">Recent Conditions</span></div>
-   		<div>24hr Rainfall: <%= parseFloat(merrell24hrRainfall).toFixed(2) %>"</div>	
-		<div>3 Day Rainfall: <%= parseFloat(merrell3DayRainfall).toFixed(2) %>"</div>
+   		<div>24hr Rainfall: <%= parseFloat(luton24hrRainfall).toFixed(2) %>"</div>	
+		<div>3 Day Rainfall: <%= parseFloat(luton3DayRainfall).toFixed(2) %>"</div>
 		<div>3 Day Low: <%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
 		<div>3 Day High: <%= parseFloat(maxTempFinal).toFixed(0) %>&#8457;</div>
 		<br>
 		<div><span class="conditions">Current Conditions</span></div>
 		<div><%= dat.toLocaleString() %></div>
-		<div><%= parseFloat(merrellCurrentTemp).toFixed(0) %>&#8457; <%= merrellCurrentCond %></div>
-		<div>Feels Like: <%= parseFloat(merrellCurrentFeelsLike).toFixed(0) %>&#8457;</div>
-		<div>Wind: <%= merrellCurrentWind %></div>
+		<div><%= parseFloat(lutonCurrentTemp).toFixed(0) %>&#8457; <%= lutonCurrentCond %></div>
+		<div>Feels Like: <%= parseFloat(lutonCurrentFeelsLike).toFixed(0) %>&#8457;</div>
+		<div>Wind: <%= lutonCurrentWind %></div>
 	</div>
 <% } %>
 
