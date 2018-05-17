@@ -26,11 +26,11 @@
 
 <!-- FROZEN -->
 <% if (
-		(thisMonthNumber < 4 && thisMonthNumber > 10) 
-		&& minTempFinal < 25 
-		&& (maxTempFinal < 25 || maxTempSum < 90)
-		&& merrell24hrRainfall >= 0 
-		&& merrell3DayRainfall >= 0
+		(thisMonthNumber <= 4 || thisMonthNumber >= 11) 
+		&& minTempFinal <= 25 
+		&& (maxTempFinal <= 25 || maxTempSum <= 77)
+		<!-- && merrell24hrRainfall >= 0 
+		&& merrell3DayRainfall >= 0 -->
 	) { %>  
    	<div class="result">Frozen</div>
    	<div class="result-description">
@@ -54,11 +54,11 @@
 
 <!-- FREEZE/THAW -->
 <% } else if (
-		(thisMonthNumber < 5 && thisMonthNumber > 9) 
-		&& minTempFinal < 25 
-		&& (maxTempFinal > 30 || maxTempSum > 90)
-		&& merrell24hrRainfall >= 0 
-		&& merrell3DayRainfall >= 0
+		(thisMonthNumber <= 4 || thisMonthNumber >= 10) 
+		&& minTempFinal <= 25 
+		&& (maxTempFinal >= 26 || maxTempSum >= 78)
+		<!-- && merrell24hrRainfall >= 0 
+		&& merrell3DayRainfall >= 0 -->
 		
 	) { %>
    	<div class="result">Freeze/Thaw</div>
@@ -83,9 +83,10 @@
 
 <!-- MUDDY -->
 <% } else if (
-		(thisMonthNumber < 13) 
-		&& minTempFinal > 25 
-		&& (maxTempFinal > 30 || maxTempSum > 90)
+		<!-- (thisMonthNumber < 12) 
+		&&  -->
+		minTempFinal >= 26 
+		&& (maxTempFinal >= 30 || maxTempSum >= 78)
 		&& (merrell24hrRainfall >= .75 || merrell3DayRainfall >= 1.5)
 	) { %>  
 	<div class="result">Muddy</div>
@@ -111,11 +112,11 @@
 
 <!-- QUESTIONABLE -->
 <% } else if (
-		(thisMonthNumber > 3 && thisMonthNumber < 11) 
-		&& minTempFinal > 50 
-		&& (maxTempFinal > 80 || maxTempSum > 200)
-		&& merrell24hrRainfall > .75 
-		&& merrell3DayRainfall > 1.5
+		<!-- (thisMonthNumber > 3 || thisMonthNumber < 11) 
+		&&  -->
+		minTempFinal >= 26 
+		&& (maxTempFinal >= 80 || maxTempSum >= 225)
+		&& (merrell24hrRainfall >= .75 || merrell3DayRainfall >= 1.5)
 	) { %>
 	<div class="result">Questionable</div>
 	<div class="result-description">
@@ -138,41 +139,13 @@
 		<div>Wind: <%= merrellCurrentWind %></div>
 	</div>
 
-<!-- PROBABLY DRY -->
-<% } else if (
-		(thisMonthNumber > 4 && thisMonthNumber < 10) 
-		&& minTempFinal > 35 
-		&& (maxTempFinal > 35 || maxTempSum > 170)
-		&& merrell24hrRainfall < .75 && merrell24hrRainfall >= .01
-		&& merrell3DayRainfall < 1.5
-	) { %>
-	<div class="result">Probably Dry</div>
-	<div class="result-description">
-   		<%=  probablyDry %>
-   	</div>
-	<br>
-	<br>
-	<a class="today-total-button">More Info...</a>
-   	<div class="more-info">
-   		<div><span class="conditions">Recent Conditions</span></div>
-   		<div>24hr Rainfall: <%= parseFloat(merrell24hrRainfall).toFixed(2) %>"</div>	
-		<div>3 Day Rainfall: <%= parseFloat(merrell3DayRainfall).toFixed(2) %>"</div>
-		<div>3 Day High/Low: <%= parseFloat(maxTempFinal).toFixed(0) %>/<%= parseFloat(minTempFinal).toFixed(0) %>&#8457;</div>
-		<br>
-		<div><span class="conditions">Current Conditions</span></div>
-		<div><%= dat.toLocaleString() %></div>
-		<div><%= parseFloat(merrellCurrentTemp).toFixed(0) %>&#8457; <%= merrellCurrentCond %></div>
-		<div>Feels Like: <%= parseFloat(merrellCurrentFeelsLike).toFixed(0) %>&#8457;</div>
-		<div>Wind: <%= merrellCurrentWind %></div>
-	</div>
-
 <!-- DRY -->
 <% } else if (
-		(thisMonthNumber > 4 && thisMonthNumber < 10) 
-		&& minTempFinal > 40 
-		&& (maxTempFinal > 60 || maxTempSum > 170)
-		&& merrell24hrRainfall < .1 
-		&& merrell3DayRainfall < .5
+		(thisMonthNumber >= 5 || thisMonthNumber <= 9) 
+		&& minTempFinal >= 26 
+		&& (maxTempFinal >= 26 || maxTempSum >= 150)
+		&& merrell24hrRainfall <= .74 
+		&& merrell3DayRainfall <= 1.49
 	) { %>
 	<div class="result">Dry</div>
    	<div class="result-description">
@@ -195,7 +168,7 @@
 	</div>
 
 <% } else { %>
-	<div class="result">Sorry, not enough data found.</div>
+	<div class="result">Data Out of Range.</div>
 	<a class="today-total-button">More Info...</a>
 	<div class="more-info">
 		<div>Check with <a href="http://wmmba.org/">the WMMBA</a> for more info.</div>

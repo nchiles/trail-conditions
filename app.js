@@ -21,7 +21,7 @@ setInterval( function(){
     	console.log("wahlfield hour get sent");
         http.get("http://trail-conditions.herokuapp.com/wahlfield"); 
     }
-} , 3600000);
+} , 3660000);
 
 var http = require("http");
 setInterval( function(){ 
@@ -39,7 +39,7 @@ setInterval( function(){
     	console.log("luton hour get sent");
         http.get("http://trail-conditions.herokuapp.com/luton"); 
     }
-} , 3840000);
+} , 3780000);
 
 
 
