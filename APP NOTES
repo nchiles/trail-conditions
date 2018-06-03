@@ -98,6 +98,52 @@ MaxTempFinal or MaxTempSum
 
 
 
+<!-- FROZEN -->
+(thisMonthNumber < 4 && thisMonthNumber > 10) 
+&& minTempFinal < 25 
+&& (maxTempFinal < 25 || maxTempSum < 90)
+&& merrell24hrRainfall >= 0 
+&& merrell3DayRainfall >= 0
+
+<!-- FREEZE/THAW -->
+(thisMonthNumber < 5 && thisMonthNumber > 9) 
+&& minTempFinal < 25 
+&& (maxTempFinal > 30 || maxTempSum > 90)
+&& merrell24hrRainfall >= 0 
+&& merrell3DayRainfall >= 0
+
+<!-- MUDDY -->
+(thisMonthNumber < 13) 
+&& minTempFinal > 25 
+&& (maxTempFinal > 30 || maxTempSum > 90)
+&& (merrell24hrRainfall >= .75 || merrell3DayRainfall >= 1.5)
+	
+<!-- QUESTIONABLE -->
+(thisMonthNumber > 3 && thisMonthNumber < 11) 
+&& minTempFinal > 50 
+&& (maxTempFinal > 80 || maxTempSum > 200)
+&& merrell24hrRainfall > .75 
+&& merrell3DayRainfall > 1.5
+	
+<!-- PROBABLY DRY -->
+(thisMonthNumber > 4 && thisMonthNumber < 10) 
+&& minTempFinal > 35 
+&& (maxTempFinal > 35 || maxTempSum > 170)
+&& merrell24hrRainfall < .75 && merrell24hrRainfall >= .01
+&& merrell3DayRainfall < 1.5
+
+<!-- DRY -->
+(thisMonthNumber > 4 && thisMonthNumber < 10) 
+&& minTempFinal > 40 
+&& (maxTempFinal > 60 || maxTempSum > 170)
+&& merrell24hrRainfall < .1 
+&& merrell3DayRainfall < .5
+
+
+
+
+
+
 
 
 

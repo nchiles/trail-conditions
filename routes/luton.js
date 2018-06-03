@@ -14,7 +14,7 @@ let cacheWithRedis = apicache
 //                     .middleware
 
 
-router.get("/luton", cacheWithRedis('62 minute'), function(req, res) {
+router.get("/luton", cacheWithRedis('62 minutes')function(req, res) {
 
     Date.prototype.subtractDays = function(days) {
       var dat = new Date(this.valueOf());
@@ -47,10 +47,12 @@ router.get("/luton", cacheWithRedis('62 minute'), function(req, res) {
     var thisMonthName = monthNames[month.getMonth()];
     var thisMonthNumber = month.getMonth() + 1;
 
-    var lutonPws1 = "pws:KMIROCKF8";
-    var lutonPws2 = "pws:KMIROCKF23";
+    var lutonPws1 = "pws:KMIROCKF23";
+    var lutonPws2 = "pws:KMIROCKF33";
     var lutonPws3 = "pws:KMIROCKF4";
 
+
+    //HEROKU
     var apiKey1 = process.env.apiKey1;
     var apiKey2 = process.env.apiKey2;
 
@@ -103,7 +105,7 @@ router.get("/luton", cacheWithRedis('62 minute'), function(req, res) {
 
     //////////3 DAY RAINFALL////////// 
     //different key on these 9 calls!!!
-    //pws:KMIROCKF8
+    //pws:KMIROCKF33
         return request("http://api.wunderground.com/api/" + apiKey2 + "/history_" + todayLessOne + "/q/" + lutonPws1 + ".json");
     })
     .then(function(data) {
@@ -190,9 +192,9 @@ router.get("/luton", cacheWithRedis('62 minute'), function(req, res) {
     luton24hrRainfall = (parseFloat(luton24hrRainfall1a) + parseFloat(luton24hrRainfall2a) + parseFloat(luton24hrRainfall3a)) /3;
 
     //GET 3 DAY RAINFALL AVERAGES FROM 3 WEATHER STATIONS
-    luton3DayRainfall1 = (parseFloat(luton3DayRainfall1b) + parseFloat(luton3DayRainfall1c) + parseFloat(luton3DayRainfall1d)) /3; //1 day ago average rainfall from pws:KMIROCKF8 pws:KMIROCKF23 pws:KMIROCKF4
-    luton3DayRainfall2 = (parseFloat(luton3DayRainfall2b) + parseFloat(luton3DayRainfall2c) + parseFloat(luton3DayRainfall2d)) /3; //2 days ago average rainfall from pws:KMIROCKF8 pws:KMIROCKF23 pws:KMIROCKF4
-    luton3DayRainfall3 = (parseFloat(luton3DayRainfall3b) + parseFloat(luton3DayRainfall3c) + parseFloat(luton3DayRainfall3d)) /3; //3 days ago average rainfall from pws:KMIROCKF8 pws:KMIROCKF23 pws:KMIROCKF4
+    luton3DayRainfall1 = (parseFloat(luton3DayRainfall1b) + parseFloat(luton3DayRainfall1c) + parseFloat(luton3DayRainfall1d)) /3; //1 day ago average rainfall from pws:KMIROCKF33 pws:KMIROCKF23 pws:KMIROCKF4
+    luton3DayRainfall2 = (parseFloat(luton3DayRainfall2b) + parseFloat(luton3DayRainfall2c) + parseFloat(luton3DayRainfall2d)) /3; //2 days ago average rainfall from pws:KMIROCKF33 pws:KMIROCKF23 pws:KMIROCKF4
+    luton3DayRainfall3 = (parseFloat(luton3DayRainfall3b) + parseFloat(luton3DayRainfall3c) + parseFloat(luton3DayRainfall3d)) /3; //3 days ago average rainfall from pws:KMIROCKF33 pws:KMIROCKF23 pws:KMIROCKF4
 
     //ADD UP 3 DAY TOTAL RAINFALL
     luton3DayRainfall = parseFloat(luton3DayRainfall1) + parseFloat(luton3DayRainfall2) + parseFloat(luton3DayRainfall3);
@@ -209,8 +211,8 @@ router.get("/luton", cacheWithRedis('62 minute'), function(req, res) {
     maxTempSum = parseFloat(maxTemp1e) + parseFloat(maxTemp2e) + parseFloat(maxTemp3e);
 
 
-    console.log("KMIROCKF8: " + luton24hrRainfall1a,                    '\n' +
-                "KMIROCKF23: " + luton24hrRainfall2a,                    '\n' +
+    console.log("KMIROCKF23: " + luton24hrRainfall1a,                    '\n' +
+                "KMIROCKF33: " + luton24hrRainfall2a,                    '\n' +
                 "KMIROCKF4: " + luton24hrRainfall3a,                   '\n' +
                 "1 day ago average rainfall: " + luton3DayRainfall1,    '\n' +
                 "2 day ago average rainfall: " + luton3DayRainfall2,    '\n' +
@@ -226,10 +228,10 @@ router.get("/luton", cacheWithRedis('62 minute'), function(req, res) {
                 "minTempArr: " + minTempFinal,                              '\n' +
                 "maxTempArr: " + maxTempFinal,                              '\n' + 
                 "maxTempSum: " + maxTempSum,                                '\n' + 
-                "KMIROCKF8: " + lutonCurrentTemp,                       '\n' +
-                "KMIROCKF8: " + lutonCurrentCond,                       '\n' +
-                "KMIROCKF8: " + lutonCurrentWind,                       '\n' +
-                "KMIROCKF8: " + lutonCurrentFeelsLike,                  '\n' +
+                "KMIROCKF23: " + lutonCurrentTemp,                       '\n' +
+                "KMIROCKF23: " + lutonCurrentCond,                       '\n' +
+                "KMIROCKF23: " + lutonCurrentWind,                       '\n' +
+                "KMIROCKF23: " + lutonCurrentFeelsLike,                  '\n' +
                 "this month: " + thisMonthNumber);
 
 
