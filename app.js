@@ -8,11 +8,11 @@ var redis 		= require('redis');
 var client = require('redis').createClient(process.env.REDIS_URL);
 var port   		= Number(process.env.PORT || 3000);
 
-var http = require("http");
-setInterval(function() {
-	console.log("index 5 minute get sent");
-    http.get("http://trail-conditions.herokuapp.com");
-}, 300000); // every 5 minutes
+// var http = require("http");
+// setInterval(function() {
+// 	console.log("index 5 minute get sent");
+//     http.get("http://trail-conditions.herokuapp.com");
+// }, 300000); // every 5 minutes
 
 var http = require("http");
 setInterval( function(){ 
@@ -56,13 +56,13 @@ app.use(express.static('public'))
 app.set("view engine", "ejs");
 
 
-// redisClient.on('ready',function() {
-//  console.log("Redis is ready");
-// });
+redisClient.on('ready',function() {
+ console.log("Redis is ready");
+});
 
-// redisClient.on('error',function() {
-//  console.log("Error in Redis");
-// });
+redisClient.on('error',function() {
+ console.log("Error in Redis");
+});
 
 app.get("/", function(req, res) {
 	res.render("index");

@@ -14,7 +14,7 @@ let cacheWithRedis = apicache
 //                     .middleware
 
 
-router.get("/merrell", cacheWithRedis('61 minutes'), function(req, res) {
+router.get("/merrell",  function(req, res) {
 
     Date.prototype.subtractDays = function(days) {
       var dat = new Date(this.valueOf());
@@ -51,8 +51,8 @@ router.get("/merrell", cacheWithRedis('61 minutes'), function(req, res) {
     var merrellPws2 = "pws:KMIROCKF10";
     var merrellPws3 = "pws:KMICOMST7";
 
-    var apiKey1 = process.env.apiKey1;
-    var apiKey2 = process.env.apiKey2;
+    var apiKey1 = "bd3c631e1ce25d97";
+    var apiKey2 = "e49c5c12fec31f3e";
 
     /////////24 HOUR RAINFALL//////////
     request("http://api.wunderground.com/api/" + apiKey1 + "/conditions/bestfct:1/q/" + merrellPws1 + ".json")    
